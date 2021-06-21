@@ -1,3 +1,2 @@
 <?php
-echo $_POST['rendah'];
-echo $_POST['tinggi'];
+echo json_encode($_POST);

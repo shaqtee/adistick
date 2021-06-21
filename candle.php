@@ -1,7 +1,7 @@
 <?php
 $conn = new mysqli('localhost', 'root', '', 'trade');
 
-function insert($data)
+function insertRendah($data)
 {
     global $conn;
     $sql = "INSERT INTO rendah (rendah) VALUES ({$data});";
@@ -21,12 +21,11 @@ function readLowest($data)
     $sql = "SELECT MIN({$data}) FROM {$data};";
     $result = $conn->query($sql);
 
-
     $tampung = [];
     while ($rows = $result->fetch_row()) {
         $tampung[] = $rows;
     }
-    return $tampung;
+    return $tampung[0][0];
 }
 
 function readHighest($data)
@@ -39,27 +38,25 @@ function readHighest($data)
     while ($rows = $result->fetch_row()) {
         $tampung[] = $rows;
     }
-    return $tampung;
+    return $tampung[0][0];
 }
 
 if (isset($_POST['rendah'])) {
-    $ambil = (int) $_POST['rendah'];
-    insert($ambil);
+    if ($_POST['rendah'] != 0) {
+        $ambil = (int) $_POST['rendah'];
+        insertRendah($ambil);
+    }
 } elseif (isset($_POST['tinggi'])) {
-    $ambiltinggi = (int) $_POST['tinggi'];
-    insertTinggi($ambiltinggi);
+    if ($_POST['tinggi'] != 0) {
+        $ambiltinggi = (int) $_POST['tinggi'];
+        insertTinggi($ambiltinggi);
+    }
 } else {
     echo "";
 }
 
-
-$bacaRendah = (int) readLowest('rendah')[0][0];
-$bacaTinggi = (int) readHighest('tinggi')[0][0];
-
-
-
-
-
+$bacaRendah = (int) readLowest('rendah');
+$bacaTinggi = (int) readHighest('tinggi');
 
 ?>
 
@@ -87,14 +84,14 @@ $bacaTinggi = (int) readHighest('tinggi')[0][0];
             </div>
         </center>
 
-        <form action="candle.php" method="POST" name="formRendah">
-            <input type="hidden" id="rendah" value name="rendah">
-            <button type="submit" id="sembunyi" hidden="hidden"></button>
+        <form action="candle.php" method="POST" name="formRendah" id="target">
+            <input type="hidden" id="rendah" name="rendah">
+            <input type="submit" id="sembunyi" hidden="hidden">
         </form>
 
-        <form action="candle.php" method="POST" name="formTinggi">
-            <input type="hidden" id="tinggi" value name="tinggi">
-            <button type="submit" id="sembunyi2" hidden="hidden">www.alfabetdigital.com</button>
+        <form action="candle.php" method="POST" name="formTinggi" id="target2">
+            <input type="hidden" id="tinggi" name="tinggi">
+            <input type="submit" id="sembunyi2" hidden="hidden">
         </form>
 
     </div>

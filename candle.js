@@ -17,7 +17,7 @@ google.charts.load('current', {
     ], true);
 
     var options = {
-      legend: 'none'
+      legend: 'none',
     };
 
     var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));

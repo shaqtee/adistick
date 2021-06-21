@@ -6,18 +6,19 @@ function randomNumber(min, max) {
 let buka = 400;
 let tutup = Math.floor(randomNumber(50,1000));
 
-let waktu = false;
+let waktu = false;//on-off
 
 let rendah = function(){
     if(tutup < buka){
         let init = tutup;
         
         document.getElementById('rendah').value = init;
-
+        
         if(Number.isInteger(waktu)){
             setInterval(() => {
 
-                document.forms['formRendah'].submit();
+                $( '#target' ).submit();
+                //document.forms['formRendah'].submit();
 
             },waktu)
         }else{
@@ -36,7 +37,8 @@ let tinggi = function(){
         if(Number.isInteger(waktu)){
             setInterval(() => {
 
-                document.forms['formTinggi'].submit();
+                $( '#target2' ).submit();
+                //document.forms['formTinggi'].submit();
             },waktu)
         }else{
             return "sip"
