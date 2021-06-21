@@ -1,4 +1,5 @@
 <?php
+
 $conn = new mysqli('localhost', 'root', '', 'trade');
 
 function insertRendah($data)
@@ -83,7 +84,7 @@ $bacaTinggi = (int) readHighest('tinggi');
                 <div id="chart_div" style="width: 700px; height: 500px;"></div>
             </div>
         </center>
-
+        <p id="cobaAjax"></p>
         <form action="candle.php" method="POST" name="formRendah" id="target">
             <input type="hidden" id="rendah" name="rendah">
             <input type="submit" id="sembunyi" hidden="hidden">

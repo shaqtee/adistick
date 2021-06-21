@@ -1,6 +1,7 @@
 google.charts.load('current', {
     'packages': ['corechart']
   });
+
   google.charts.setOnLoadCallback(drawChart);
 
   //Time, Low, Open, Close, High
