@@ -7,12 +7,13 @@ google.charts.load('current', {
   //Time, Low, Open, Close, High
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
-      ['Selasa', 20, 28, 38, 45],
-      ['Rabu', 31, 38, 55, 66],
-      ['Kamis', 50, 55, 77, 80],
-      ['Jumat', 77, 77, 66, 100],
-      ['Sabtu', 50, 66, 90, 200],
-      ['Minggu', 0, 66, 90, 1000],
+      
+      ['Selasa', runLow5, runOpen5, runClose5, runHigh5],
+      ['Rabu', runLow4, runOpen4, runClose4, runHigh4],
+      ['Kamis', runLow3, runOpen3, runClose3, runHigh3],
+      ['Jumat', runLow2, runOpen2, runClose2, runHigh2],
+      ['Sabtu', runLow1, runOpen1, runClose1, runHigh1],
+      ['Minggu', runLow, runOpen, runClose, runHigh],
       ['Senin', rendah(), buka, tutup, tinggi()]
       // Treat first row as data as well.
     ], true);
@@ -24,4 +25,5 @@ google.charts.load('current', {
     var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
 
     chart.draw(data, options);
+    
   }

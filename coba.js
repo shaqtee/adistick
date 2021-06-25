@@ -1,12 +1,31 @@
-//Regular Method
-function randomNumber(min, max) { 
-    return Math.random() * (max - min) + min;
-} 
 
-let waktu = 2000;//integer = on | false = off
+let waktu = false;//integer = on | false = off
 
 let buka = 400; // isi harga pembukaan
-let tutup = Math.floor(randomNumber(200,800)); // dummy harga perubahan
+
+let tutup = randomNumberAjax();
+
+function randomNumberAjax() {
+    let tmp = null;
+    $.ajax({
+        url: 'process.php',
+        type: "POST",
+        global: false,
+        async: false,
+        dataType: 'html',
+        success: function(data){
+            tmp = data;
+        }
+    })
+    return tmp;
+};
+
+//function myFunction() {
+//    tutup = setInterval(randomNumberAjax,waktu);
+//}
+//myFunction();
+
+//console.log(tutup);
 
 let rendah = function(){
     if(tutup < buka){
@@ -101,17 +120,19 @@ let tinggi = function(){
 
 //bukaAsync();
 
-//let randomPriceAjax = function() {
-//    let tmp = null;
-//    $.ajax({
-//        url: 'process.php',
-//        type: "POST",
-//        global: false,
-//        async: false,
-//        dataType: 'html',
-//        success: function(data){
-//            tmp = data;
-//        }
-//    })
-//    return tmp;
-//}();
+//Regular Method
+//function randomNumber(min, max) { 
+//    return Math.random() * (max - min) + min;
+//} 
+//let tutup = Math.floor(randomNumber(200,800)); // dummy harga perubahan
+
+// berubah tanpa ajax tanpa refresh
+//window.onload = function ()
+//{
+//    var output = document.getElementById('foo');
+//
+//    setInterval(function ()
+//    {
+//        output.innerHTML = Math.floor(Math.random() * 10);
+//    }, 1000);
+//};

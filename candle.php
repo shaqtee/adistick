@@ -1,64 +1,7 @@
 <?php
-
-$conn = new mysqli('localhost', 'root', '', 'trade');
-
-function insertRendah($data)
-{
-    global $conn;
-    $sql = "INSERT INTO rendah (rendah) VALUES ({$data});";
-    $conn->query($sql);
-}
-
-function insertTinggi($data)
-{
-    global $conn;
-    $sql = "INSERT INTO tinggi (tinggi) VALUES ({$data});";
-    $conn->query($sql);
-}
-
-function readLowest($data)
-{
-    global $conn;
-    $sql = "SELECT MIN({$data}) FROM {$data};";
-    $result = $conn->query($sql);
-
-    $tampung = [];
-    while ($rows = $result->fetch_row()) {
-        $tampung[] = $rows;
-    }
-    return $tampung[0][0];
-}
-
-function readHighest($data)
-{
-    global $conn;
-    $sql = "SELECT MAX({$data}) FROM {$data};";
-    $result = $conn->query($sql);
-
-    $tampung = [];
-    while ($rows = $result->fetch_row()) {
-        $tampung[] = $rows;
-    }
-    return $tampung[0][0];
-}
-
-if (isset($_POST['rendah'])) {
-    if ($_POST['rendah'] != 0) {
-        $ambil = (int) $_POST['rendah'];
-        insertRendah($ambil);
-    }
-} elseif (isset($_POST['tinggi'])) {
-    if ($_POST['tinggi'] != 0) {
-        $ambiltinggi = (int) $_POST['tinggi'];
-        insertTinggi($ambiltinggi);
-    }
-} else {
-    echo "";
-}
-
-$bacaRendah = (int) readLowest('rendah');
-$bacaTinggi = (int) readHighest('tinggi');
-
+require 'configandmodels.php';
+require 'controller.php';
+require 'pricing.php';
 ?>
 
 <!doctype html>
@@ -102,6 +45,7 @@ $bacaTinggi = (int) readHighest('tinggi');
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="coba.js"></script>
 
 
 
@@ -111,10 +55,39 @@ $bacaTinggi = (int) readHighest('tinggi');
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     -->
 
-    <script src="coba.js"></script>
     <script>
-        var terendah = <?= $bacaRendah; ?>;
-        var tertinggi = <?= $bacaTinggi; ?>;
+        let terendah = <?= $bacaRendah; ?>;
+        let tertinggi = <?= $bacaTinggi; ?>;
+
+        let runLow = <?= $runLow; ?>;
+        let runOpen = <?= $runOpen; ?>;
+        let runClose = <?= $runClose; ?>;
+        let runHigh = <?= $runHigh; ?>;
+
+        let runLow1 = <?= $runLow1; ?>;
+        let runOpen1 = <?= $runOpen1; ?>;
+        let runClose1 = <?= $runClose1; ?>;
+        let runHigh1 = <?= $runHigh1; ?>;
+
+        let runLow2 = <?= $runLow2; ?>;
+        let runOpen2 = <?= $runOpen2; ?>;
+        let runClose2 = <?= $runClose2; ?>;
+        let runHigh2 = <?= $runHigh2; ?>;
+
+        let runLow3 = <?= $runLow3; ?>;
+        let runOpen3 = <?= $runOpen3; ?>;
+        let runClose3 = <?= $runClose3; ?>;
+        let runHigh3 = <?= $runHigh3; ?>;
+
+        let runLow4 = <?= $runLow4; ?>;
+        let runOpen4 = <?= $runOpen4; ?>;
+        let runClose4 = <?= $runClose4; ?>;
+        let runHigh4 = <?= $runHigh4; ?>;
+
+        let runLow5 = <?= $runLow5; ?>;
+        let runOpen5 = <?= $runOpen5; ?>;
+        let runClose5 = <?= $runClose5; ?>;
+        let runHigh5 = <?= $runHigh5; ?>;
     </script>
 </body>
 
